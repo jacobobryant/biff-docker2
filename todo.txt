@@ -1,17 +1,11 @@
-use postgres
-use minio + xtdb checkpoints
-
-Build jar instead of running clj
-config: use DATABASE_URL
-config: use PUBLIC_URL / use custom domain
-remove unneeded bb commands / alter existing ones
-
 instructions:
-- flyctl launch
-- set flyctl secrets
-- set :biff/host and :biff/base-url in config.edn
-- scale to 1 machine with 1 CPU (default) and 1024 RAM
-
-zero-downtime deploys? scale to 2 machines first?
-
-why did the app shutdown on its own? `Downscaling app biff-docker from 1 machines to 0 machines, stopping machine 32874144a33208)`
+- add command to create uberjar. make sure that command includes compiled CSS. also make cache-busting work.
+- add Dockerfile that compiles and runs the uberjar, including JVM opts
+- set up managed postgres
+- add config.edn to git, set host to 0.0.0.0, add postgres config, set base-url
+- push to github (including config.edn) and create app on DO app platform
+  - set env vars
+  - for cheapest possible, switch to basic plan (1gb)
+  - set health check delay to 60s
+- remove unneeded bb commands
+- TODO add XTDB checkpointing

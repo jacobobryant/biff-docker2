@@ -14,16 +14,13 @@ RUN curl -L -o /usr/local/bin/tailwindcss \
 WORKDIR /app
 COPY resources ./resources
 COPY src ./src
+COPY build ./build
 COPY bb ./bb
 COPY bb.edn config.edn deps.edn .
-RUN mkdir -p target/resources/public/css
-RUN tailwindcss \
-  -c resources/tailwind.config.js \
-  -i resources/tailwind.css \
-  -o target/resources/public/css/main.css \
-  --minify \
-  && rm /usr/local/bin/tailwindcss
+
+RUN clj -X:build uberjar && cp target/jar/app.jar . && rm -r target
+RUN rm /usr/local/bin/tailwindcss && rm /usr/local/bin/bb
 
 EXPOSE 8080
 
-CMD ["/bin/sh", "-c", "$(bb --force -e nil; bb run-cmd)"]
+CMD ["/usr/bin/java", "-XX:-OmitStackTraceInFastThrow", "-XX:+CrashOnOutOfMemoryError", "-Duser.timezone=UTC", "-jar", "app.jar", "--port", "7888", "--middleware", "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"]

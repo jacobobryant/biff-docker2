@@ -4,4 +4,8 @@
         metosin/muuntaja                    {:mvn/version "0.6.8"}
         ring/ring-defaults                  {:mvn/version "0.3.4"}
         org.clojure/clojure                 {:mvn/version "1.11.1"}
-        org.slf4j/slf4j-simple              {:mvn/version "2.0.0-alpha5"}}}
+        org.slf4j/slf4j-simple              {:mvn/version "2.0.0-alpha5"}}
+ :aliases {:build {:extra-deps {io.github.clojure/tools.build {:git/sha "24f2894"
+                                                               :git/tag "v0.9.5" :git/url "https://github.com/clojure/tools.build.git"}}
+                   :extra-paths ["build"]
+                   :ns-default build}}}
