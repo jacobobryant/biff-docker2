@@ -4,7 +4,7 @@ ENV BB_COMMIT=965c177bca31ae9882c975ef7db448e12f59984e
 ENV TAILWIND_VERSION=v3.2.4
 
 RUN apt-get update && apt-get install -y \
-  curl \
+  curl default-jre \
   && rm -rf /var/lib/apt/lists/*
 RUN curl -s https://raw.githubusercontent.com/babashka/babashka/$BB_COMMIT/install | bash
 RUN curl -L -o /usr/local/bin/tailwindcss \

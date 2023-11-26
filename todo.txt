@@ -7,5 +7,8 @@ instructions:
   - set env vars
   - for cheapest possible, switch to basic plan (1gb)
   - set health check delay to 60s
+  - set custom domain
 - remove unneeded bb commands
 - TODO add XTDB checkpointing
+
+still had to hit the deploy button manually one time
