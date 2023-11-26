@@ -1,0 +1,17 @@
+use postgres
+use minio + xtdb checkpoints
+
+Build jar instead of running clj
+config: use DATABASE_URL
+config: use PUBLIC_URL / use custom domain
+remove unneeded bb commands / alter existing ones
+
+instructions:
+- flyctl launch
+- set flyctl secrets
+- set :biff/host and :biff/base-url in config.edn
+- scale to 1 machine with 1 CPU (default) and 1024 RAM
+
+zero-downtime deploys? scale to 2 machines first?
+
+why did the app shutdown on its own? `Downscaling app biff-docker from 1 machines to 0 machines, stopping machine 32874144a33208)`

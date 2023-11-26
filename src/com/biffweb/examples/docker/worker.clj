@@ -14,7 +14,7 @@
                           :where [[user :user/email]]})
                      0
                      0)]
-    (log/info "There are" n-users "users.")))
+    #_(log/info "There are" n-users "users.")))
 
 (defn alert-new-user [{:keys [biff.xtdb/node]} tx]
   (doseq [_ [nil]
